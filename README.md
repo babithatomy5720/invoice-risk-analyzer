@@ -63,7 +63,7 @@ An intelligent web application that analyzes invoices using AI to detect risk le
 ## 📸 Screenshots
 
 This workflow shows how invoice data is processed through n8n, where risk is evaluated and automated email alerts are triggered based on the detected risk level.
-[n8nautomation_ss.png]
+![n8n Workflow](n8nautomation_ss.png)
 
 ### 🧠 Key Steps in the Workflow
 
