@@ -6,7 +6,7 @@ An intelligent web application that analyzes invoices using AI to detect risk le
 
 ## 🚀 Live Demo
 
-👉 (Add your Streamlit app link here after deployment)
+(https://invoice-risk-analyzer.streamlit.app/)
 
 ---
 
