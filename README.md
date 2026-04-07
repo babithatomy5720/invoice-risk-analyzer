@@ -31,12 +31,6 @@ An intelligent web application that analyzes invoices using AI to detect risk le
 
 ---
 
-## 📸 Screenshots
-
-(Add screenshots of your app here — upload images to repo and link them)
-
----
-
 ## ⚙️ Installation (Local Setup)
 
 ### 1. Clone the repository
