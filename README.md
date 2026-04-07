@@ -60,6 +60,30 @@ An intelligent web application that analyzes invoices using AI to detect risk le
 
 ---
 
+## 📸 Screenshots
+
+This workflow shows how invoice data is processed through n8n, where risk is evaluated and automated email alerts are triggered based on the detected risk level.
+
+### 🧠 Key Steps in the Workflow
+
+1. **Webhook Trigger**  
+   Receives invoice data from the Streamlit application  
+
+2. **Risk Evaluation (IF Node)**  
+   Checks the risk level (`High / Medium / Low`)  
+
+3. **AI Email Generation**  
+   Generates dynamic email content for alerts  
+
+4. **Email Notification**  
+   Sends alert emails for high-risk invoices  
+
+5. **Response to App**  
+   Returns status and message back to Streamlit  
+
+
+---
+
 ## ⚙️ Installation (Local Setup)
 
 ### 1. Clone the repository
@@ -136,7 +160,5 @@ This app is deployed using **Streamlit Community Cloud**.
 * 🌍 Multi-language support
 
 ---
-
-
 
 ---
