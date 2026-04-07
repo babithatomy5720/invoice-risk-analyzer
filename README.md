@@ -1,139 +1,92 @@
-# 📄 AI Invoice Risk Analyzer
+# 📄 AI-Powered Invoice Risk Analyzer
 
-A production-style AI application that analyzes invoices, detects financial risk, and automatically triggers alert workflows.
+An intelligent web application that analyzes invoices using AI to detect risk levels and automatically trigger email alerts using workflow automation.
 
 ---
 
-## 🚀 Live Application
+## 🚀 Live Demo
 
 (https://invoice-risk-analyzer.streamlit.app/)
 
 ---
 
-## 💡 What This Project Does
+## 🧠 Features
 
-This tool helps identify risky invoices by extracting key financial details using AI and classifying them into **Low, Medium, or High risk**.
-
-For high-risk invoices, it automatically triggers an email alert using workflow automation.
-
----
-
-## 🔍 Problem It Solves
-
-Manual invoice review is:
-
-* Time-consuming
-* Error-prone
-* Hard to scale
-
-This project automates:
-✔ Data extraction
-✔ Risk detection
-✔ Alerting system
-
----
-
-## ⚙️ How It Works
-
-1. Upload invoice (PDF/TXT)
-2. AI extracts structured data
-3. Risk level is determined
-4. Dashboard updates instantly
-5. Email alert is triggered (via n8n)
-
----
-
-## 🧠 Key Features
-
-* 📄 Multi-file invoice upload
-* 🤖 AI-powered data extraction (Gemini)
-* ⚠️ Risk classification system
-* 📊 Real-time dashboard
-* 📧 Automated email alerts
+* 📁 Upload PDF/TXT invoices
+* 🤖 AI-powered data extraction using Gemini
+* ⚠️ Automatic Risk Classification (Low / Medium / High)
+* 📊 Interactive Risk Dashboard
+* 📧 Email Alerts via n8n automation
 * 🔁 Smart caching to avoid duplicate processing
 
 ---
 
-## 🏗️ Architecture Overview
+## 🏗️ Tech Stack
 
-Streamlit App → Gemini API → Risk Detection → n8n Webhook → Email Alert
-
----
-
-## 📊 Sample Output
-
-```json
-{
-  "Invoice ID": "INV-2024-001",
-  "Vendor Name": "XYZ Traders",
-  "Amount": "₹1,20,000",
-  "Due Date": "2026-04-15",
-  "Risk Level": "High"
-}
-```
+* **Frontend & App Framework:** Streamlit
+* **Programming Language:** Python
+* **AI Processing:** Google Gemini API (gemini-2.5-flash)
+* **Workflow Automation:** n8n
+* **API Communication:** REST (requests library)
+* **Data Processing & Dashboard:** Pandas
+* **PDF Parsing:** pdfplumber
 
 ---
 
-## 🧪 Key Challenges & Solutions
+## 🔄 End-to-End Workflow
 
-### 1. Duplicate Invoice Processing
+1. **User uploads invoice (PDF/TXT)** in Streamlit UI
+2. **Text extraction** is performed using pdfplumber
+3. **Gemini API** analyzes invoice and returns structured JSON
+4. **Risk Level is determined** (Low / Medium / High)
+5. **Result is cached** to avoid reprocessing on reruns
+6. **User triggers email alert** from UI
+7. **Payload sent to n8n webhook**
+8. **n8n IF node evaluates risk**
 
-**Issue:** Streamlit reruns caused repeated processing
-**Fix:** Implemented session-based caching
-
----
-
-### 2. Inconsistent Risk Classification
-
-**Issue:** AI returned different results on rerun
-**Fix:** Stored AI output per file
-
----
-
-### 3. n8n Risk Mismatch
-
-**Issue:** Workflow recalculated risk incorrectly
-**Fix:** Passed risk explicitly from Streamlit
+   * If High → Generate email + send via Gmail
+   * Else → Return safe response
+9. **Response sent back to Streamlit** and displayed to user
 
 ---
 
-## 📁 Project Structure
+## 🔗 Workflow Automation (n8n)
 
-```
-├── app.py
-├── requirements.txt
-└── README.md
-```
+* Receives structured invoice data from Streamlit
+* Uses **IF node** to evaluate `risk` field
+* Generates dynamic email content using AI node
+* Sends email alerts via Gmail node
+* Returns response back to Streamlit app
 
 ---
 
-## ⚙️ Setup Instructions
+## ⚙️ Installation (Local Setup)
 
-### 1. Clone repo
+### 1. Clone the repository
 
-```
+```bash
 git clone https://github.com/your-username/your-repo-name.git
 cd your-repo-name
 ```
 
 ### 2. Install dependencies
 
-```
+```bash
 pip install -r requirements.txt
 ```
 
 ### 3. Add secrets
 
-Create `.streamlit/secrets.toml`:
+Create a `.streamlit/secrets.toml` file:
 
-```
-GEMINI_API_KEY = "your_key"
-N8N_WEBHOOK_URL = "your_webhook"
+```toml
+GEMINI_API_KEY = "your_gemini_api_key"
+N8N_WEBHOOK_URL = "your_n8n_webhook_url"
 ```
 
-### 4. Run app
+### 4. Run the app
 
-```
+```bash
 streamlit run app.py
 ```
 
@@ -141,16 +94,49 @@ streamlit run app.py
 
 ## 🌐 Deployment
 
-Deployed using Streamlit Community Cloud.
+This app is deployed using **Streamlit Community Cloud**.
+
+### Steps:
+
+1. Push code to GitHub
+2. Connect repository to Streamlit Cloud
+3. Add secrets in deployment settings
+4. Deploy 🚀
 
 ---
 
-## 🚀 Future Improvements
+## 📊 Example Output
 
-* Export reports (PDF/Excel)
-* Advanced fraud detection logic
-* User authentication
-* Invoice history tracking
+```json
+{
+  "Invoice ID": "INV-1023",
+  "Vendor Name": "ABC Pvt Ltd",
+  "Amount": "₹75,000",
+  "Due Date": "2026-04-10",
+  "Risk Level": "High"
+}
+```
 
 ---
 
+## 🚨 Challenges Solved
+
+* Prevented duplicate invoice processing (Streamlit rerun issue)
+* Ensured consistent AI output using caching
+* Fixed webhook data mismatch between Streamlit & n8n
+* Stabilized risk classification across interactions
+
+---
+
+## 📌 Future Improvements
+
+* 📥 Download reports (PDF/Excel)
+* 🔐 User authentication
+* 📊 Advanced analytics dashboard
+* 🌍 Multi-language support
+
+---
+
+
+
+---
